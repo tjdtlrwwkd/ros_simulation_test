@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <include file="$(find aws_robomaker_small_warehouse_world)/launch/no_roof_small_warehouse.launch">
+        <arg name="gui" default="true"/>
+    </include>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find agv_description)/urdf/agv.xacro'" />
+    
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0.5"/>
+    
+    <node name="agv_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param robot_description -model agv -x $(arg x) -y $(arg y) -z $(arg z)" />
+    
+    <!-- <node name="agv_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param robot_description -model agv" /> -->
+          
+</launch>
